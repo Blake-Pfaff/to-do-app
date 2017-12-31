@@ -1,0 +1,48 @@
+version: '3.3'
+services:
+
+  # Rails App
+  app:
+    build: .
+    command: bundle exec puma -C config/puma.rb
+    volumes:
+      - ./:/var/www/app
+    depends_on:
+      - db
+    environment:
+      - STRIPE_PUBLISHABLE_KEY=pk_test_TiWr2G3B7VThsahzSiW6TbOs
+      - STRIPE_SECRET_KEY=sk_test_hSogUCBW9ym0d4U3km1ZY1OH
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+
+  # Database
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - to_do_app-data:/var/lib/postgresql/data
+
+  # Database UI
+  pgweb:
+    container_name: pgweb
+    restart: always
+    image: sosedoff/pgweb
+    ports:
+      - "8082:8081"
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/to_do_app_development?sslmode=disable
+    depends_on:
+      - db
+
+  # Mailcatcher
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - "1080:1080"
+
+volumes:
+  to_do_app-data:
