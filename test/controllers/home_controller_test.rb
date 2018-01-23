@@ -1,9 +1,18 @@
 require 'test_helper'
 
 class HomeControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get home_index_url
-    assert_response :success
+  include Devise::Test::IntegrationHelpers
+
+  test "should redirect an unauthenticated user to the sign in page" do
+    get root_path
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should redirect an authenticated user to their show page" do
+    david = users(:david_hasselhoff)
+    sign_in david
+    get root_path
+    assert_redirected_to user_path(david.id)
   end
 
 end

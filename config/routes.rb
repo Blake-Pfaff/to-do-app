@@ -5,6 +5,6 @@ Rails.application.routes.draw do
 
   resources :users
 
-  root :to => 'users#show'
+  root :to => 'home#index'
 
 end
