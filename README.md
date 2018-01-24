@@ -29,4 +29,4 @@ docker-compose run -e "RAILS_ENV=test" --rm app rails test
 
 ## Author
 
-**Blake Pfaff** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+**Blake Pfaff** 
