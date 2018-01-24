@@ -1,24 +1,32 @@
-# README
+# JUST DO IT
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Shia Labeouf inspired to do list made with Ruby on Rails and Minitest for testing. 
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+download or clone the project to your computer.  
 
-* System dependencies
 
-* Configuration
+First Run docker-compose build,
+docker-compose run --rm api rails db:create,
+docker-compose run --rm api rails db:migrate,
+docker-compose run --rm api rails db:seed,
+docker-compose up
 
-* Database creation
+### Prerequisites
 
-* Database initialization
+Docker :)
 
-* How to run the test suite
+## Running the tests
 
-* Services (job queues, cache servers, search engines, etc.)
+docker-compose run -e "RAILS_ENV=test" --rm app rails test
 
-* Deployment instructions
+## Built With
 
-* ...
+* [Ruby on Rails](http://rubyonrails.org/) - The web framework used
+* [Docker](https://docs.docker.com/docker-for-mac/install/) - Dependency Management
+* [sugar n spice]
+
+## Author
+
+**Blake Pfaff** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
