@@ -7,22 +7,24 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
 
   #2. Test that links are not on the page for authenticated users.
 
-  test "should load the landing page and show links for non auth user" do
+  test "an unauthenticated user is shown login / sign up links" do
+    # Visit the root path
     get root_path
-    assert_select "#register-actions"
-
+    # Assert that the <div> with the ID "register-actions" exists on the page
+    assert_select "div#register-actions"
   end
 
-  test "sould load the page and make sure links are not shown for auth users" do
-    @user = users(:one)
-    @user.confirmed_at = Time.now
-    @user.save
-    login_as(@user)
-
+  test "an authenticated user is not shown login / sign up links" do
+    # :david_hasselhoff is from fixtures
+    david = users(:david_hasselhoff)
+    # sign_in comes from include Devise::Test::IntegrationHelpers
+    sign_in david
+    # Visit the root path
     get root_path
+    # Verify that the <div> with the ID "register-actions" is not available
+    assert_select "div#register-actions", false
+    end
 
-    assert_select "#register-actions", false
-  end
 
   #test "should redirect an authenticated user to their show page" do
     #:david_hasselhoff is from fixtures
