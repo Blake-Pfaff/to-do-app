@@ -9,6 +9,7 @@ services:
       - ./:/var/www/app
     depends_on:
       - db
+      - selenium
     environment:
       - STRIPE_PUBLISHABLE_KEY=pk_test_TiWr2G3B7VThsahzSiW6TbOs
       - STRIPE_SECRET_KEY=sk_test_hSogUCBW9ym0d4U3km1ZY1OH
@@ -43,6 +44,14 @@ services:
     image: schickling/mailcatcher
     ports:
       - "1080:1080"
+
+  # Selenium
+  selenium:
+    image: selenium/standalone-chrome-debug:3.0.1-germanium
+    logging:
+      driver: none
+    stdin_open: true
+    tty: true
 
 volumes:
   to_do_app-data:
