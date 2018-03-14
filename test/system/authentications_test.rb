@@ -7,17 +7,23 @@ class AuthenticationsTest < ApplicationSystemTestCase
     user = users(:david_hasselhoff)
 
     # Visit the login page
-    visit new_session_path
+    visit new_user_session_path
 
     # Fill the email and password fields with the data from the users fixture
-    fill_in 'email', with: 'david@hasselhoff.com'
-    fill_in 'password', with: '12345678'
+    fill_in 'user_email', with: user.email
+    fill_in 'user_password', with: '12345678'
 
     # Submit the form
-    click_on "Log in"
+    click_button 'Log in'
 
-    # Assert the user was redirected to the user_path
-    assert_redirected_to user_path(user.id)
-    end
+    # Assert the the 'User Profile' text is rendered
+    assert_selector "h1", text: "User Profile"
+
+    # Assert that the user's email is on the screen
+    assert_text user.email
+
+    # Assert that the path is /users/{id}
+    assert_current_path user_path(user)
+  end
 
 end
