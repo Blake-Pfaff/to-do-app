@@ -3,7 +3,7 @@ require 'test_helper'
 class UsersControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
-  test 'show a single user' do
+  test 'signed in user can access landing page' do
 
     user = User.create!(email: "test@test.com", password: "fakepw", id: 1)
 
@@ -11,6 +11,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     sign_in user
 
-    assert_template 'show'
+    assert_template 'home/index'
   end
 end

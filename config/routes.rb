@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     root 'users#show' # creates user_root_path
   end
 
-  resources :users
+  resources :users do
+    resources :items, only: [:create]
+  end
 
   root :to => 'home#index'
 

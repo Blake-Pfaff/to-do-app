@@ -1,3 +1,8 @@
 <h1>User Profile</h1>
 <h3>Logged in as: <%= @user.email %></h3>
+<div>
 
+  <%= render :partial => "items/item" %>
+  <%= render :partial => "items/form" %>
+
+</div>
