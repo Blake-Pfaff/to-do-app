@@ -39,6 +39,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'nio4r', '~> 2.2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+# faker for seed data
+gem 'faker', '~> 1.6', '>= 1.6.6'
 
 group :development, :test do
   #Extracting `assigns` and `assert_template` from ActionDispatch
