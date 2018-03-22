@@ -13,11 +13,16 @@ class ItemsController < ApplicationController
     redirect_back fallback_location: root_path
   end
 
+  def destroy
+    @item = @user.item.find(item_params)
+    @comment.destroy
+  end
+
       private
 
-  def set_user
-    @user = User.find(params[:user_id])
-  end
+      def set_user
+        @user = User.find(params[:user_id])
+      end
 
       def item_params
         params.require(:item).permit(:name)
