@@ -6,8 +6,7 @@
       <h3>Things to do (<%= @user.items.count %>)</h3>
       <ol>
         <% @user.items.each do |item| %>
-          <li><%= item.name %></li>
-
+          <li id="item-<%= item.id %>"><%= item.name %><%= link_to "", user_item_path(@user.id, item.id), :remote => true, method: :delete, class: 'glyphicon glyphicon-ok' %></li>
         <% end %>
       </ol>
       <% else %>

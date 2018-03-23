@@ -14,8 +14,19 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item = @user.item.find(item_params)
-    @comment.destroy
+
+    @item = Item.find(params[:id])
+
+      if @item.destroy
+        flash[:notice] = "Item deleted."
+        respond_to do |format|
+          format.js
+      end
+      else
+        flash[:alert] = "failed"
+      end
+
+
   end
 
       private
