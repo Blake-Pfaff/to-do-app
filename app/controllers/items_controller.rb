@@ -18,14 +18,13 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
 
       if @item.destroy
-        flash[:notice] = "Item deleted."
+
         respond_to do |format|
-          format.js
+          format.js {  flash.now[:notice] = "Item Deleted" }
       end
       else
         flash[:alert] = "failed"
       end
-
 
   end
 

@@ -7,7 +7,7 @@
       <ol>
         <% @user.items.each do |item| %>
           <li id="item-<%= item.id %>"><%= item.name %>
-             <%= item.since %>
+            : you have <%= item.since %> to do it
             <%= link_to "", user_item_path(@user.id, item.id), :remote => true, method: :delete, class: 'glyphicon glyphicon-ok' %></li>
         <% end %>
       </ol>
