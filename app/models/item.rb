@@ -5,8 +5,7 @@ class Item < ApplicationRecord
   belongs_to :user
 
   def since
-    to_time = Time.now - 7.days
-    distance_of_time_in_words(self.created_at , to_time)
+    distance_of_time_in_words(self.created_at, Time.now - 7.days)
   end
 
 end
