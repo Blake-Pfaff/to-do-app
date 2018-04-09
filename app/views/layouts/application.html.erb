@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>App</title>
+    <title>Just Do It</title>>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <body>
+  <body class="body-flex">
     <div class="container">
       <% if user_signed_in? %>
         Signed in as: <strong><%= current_user.email %></strong> |
